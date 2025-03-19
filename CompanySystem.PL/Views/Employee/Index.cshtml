@@ -1,0 +1,98 @@
+﻿@model IEnumerable<EmployeeViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Employees</h1>
+
+<br />
+<div class="row justify-content-center align-content-center">
+    <form class="row col-8 offset-1"> @*Search Inside Index*@
+        <div class="col-8">
+            <input type="text" class="form-control" name="SearchValue" value="@ViewBag.SearchValue" placeholder="Search by Name..." />
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+    </form>
+</div>
+<br />
+
+@if (TempData["Message"] is not null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create New Employee</a>
+
+<br /><br />  
+
+@if(Model.Count() > 0)
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(E=>E.Name)</th>
+                    <th>@Html.DisplayNameFor(E=>E.Email)</th>
+                    <th>@Html.DisplayNameFor(E=>E.Age)</th>
+                    <th>@Html.DisplayNameFor(E=>E.Phone)</th>
+                    <th>@Html.DisplayNameFor(E=>E.department)</th>
+                    <th>@Html.DisplayNameFor(E=>E.Address)</th>
+                    <th>@Html.DisplayNameFor(E=>E.Salary)</th>
+                    <th>@Html.DisplayNameFor(E=>E.HireDate)</th>
+                    <th>@Html.DisplayNameFor(E=>E.Image)</th>
+                    <th>@Html.DisplayNameFor(E=>E.IsActive)</th>
+                    <th>Details</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var employee in Model)
+                {
+                    <tr>
+                    <td>@Html.DisplayFor(E=>employee.Name)</td>
+                    <td>@Html.DisplayFor(E=>employee.Email)</td>
+                    <td>@Html.DisplayFor(E=>employee.Age)</td>
+                    <td>@Html.DisplayFor(E=>employee.Phone)</td>
+                    <td>@Html.DisplayFor(E=>employee.department.Name)</td>
+                    <td>@Html.DisplayFor(E=>employee.Address)</td>
+                    <td>@Html.DisplayFor(E=>employee.Salary)</td>
+                    <td>@Html.DisplayFor(E=>employee.HireDate)</td>
+                    <td>
+                        <img src="~/Files/Images/@employee.ImageName" class="img-fluid rounded" alt="Image" height="60" width="60">
+                    </td>
+                    <td>
+                        @if(employee.IsActive == true)
+                        {
+                            <i class="fa-solid fa-circle" style="color:green"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-circle" style="color:red"></i>
+                        }
+                        
+                    </td>
+                    <partial name="MyPartialView/_ButtonPartialView" model="@employee.Id.ToString()" />
+                    <th>
+                        <botton class="btn btn-danger" onclick="confirmDelete('@Url.Action("Delete","Employee",new { id = employee.Id, ImageName=employee.ImageName })')">
+                            <i class="fas fa-trash"></i>Delete
+                        </botton>
+                    </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="mt-5 alert alert-warning">
+            <h3>There is no Employee </h3>
+        </div>
+    }
+
+<partial name="MyPartialView/_ConfirmDeleteParialView" />
+
+

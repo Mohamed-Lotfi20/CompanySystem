@@ -1,0 +1,18 @@
+﻿@model DepartmentViewModel
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+<h1>Department Edit</h1>
+<br />
+<br />
+<form asp-action="Edit">
+   
+    <partial name="_PartialViews/_Edit_And_Create" />
+
+    || <a asp-controller="Department" asp-action="Details" asp-route-id="@Model.id" class="btn btn-light">Back To Details </a>
+</form>
+
+@section ValidationScriptSection{
+    <partial name="_ValidationScriptsPartial" />
+}

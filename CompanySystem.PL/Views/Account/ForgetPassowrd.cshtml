@@ -1,0 +1,20 @@
+﻿@model ForgetPasswordViewModel
+@{
+    ViewData["Title"] = "ForgetPassowrd";
+	Layout = "~/Views/Shared/MyPartialView/_AuthLayout.cshtml";
+}
+
+<div class="main-agileinfo">
+	<div class="agileits-top">
+		<form asp-action="SendEmail" method="post">
+			<input class="text email" asp-for="Email" placeholder="E-Mail" required="" />
+			<input type="submit" value="Send Email" />
+		</form>
+		<p><a asp-controller="Account" asp-action="Login"> Back!</a></p>
+	</div>
+	</div>
+</div>
+@section validationScriptSection{
+	<partial name="_ValidationScriptsPartial" />
+}
+

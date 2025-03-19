@@ -1,0 +1,45 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details Of User</h1>
+
+<br />
+<br />
+
+<div class="form-group">
+    <label class="col-form-label" asp-for="id"></label>
+    <input class="form-control" asp-for="id" readonly />
+    <span asp-asp-validation-for="id" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="FName"></label>
+    <input class="form-control" asp-for="FName" readonly />
+    <span asp-asp-validation-for="FName" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="LName"></label>
+    <input class="form-control" asp-for="LName" readonly />
+    <span asp-validation-for="LName" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="Email"></label>
+    <input class="form-control" asp-for="Email" readonly />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="PhoneNumber"></label>
+    <input class="form-control" asp-for="PhoneNumber" readonly />
+    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="col-form-label" asp-for="Roles"></label>
+    <input class="form-control" asp-for="Roles" readonly />
+    <span asp-validation-for="Roles" class="text-danger"></span>
+</div>
+<a asp-controller="User" asp-action="Edit" class="btn btn-light" asp-route-id="@Model.id">Edit</a> ||
+<a asp-controller="User" asp-action="Index" class="btn btn-light">Back To List</a>
+
+

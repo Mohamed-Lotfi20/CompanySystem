@@ -1,0 +1,18 @@
+﻿@model DepartmentViewModel
+@{
+    ViewData["Title"] = "Create Department";
+}    
+
+<h1>Create a New Department</h1>
+
+<br /><br />
+
+<form asp-action="Create">
+
+    <partial name="_PartialViews/_Edit_And_Create" />
+
+</form>
+
+@section ValidationScriptSection{
+    <partial name="_ValidationScriptsPartial" />
+}
